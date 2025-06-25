@@ -15,13 +15,15 @@
     html, body {
         font-size: 15px;
         line-height: 20px;
-        padding: 5px;
-        margin-left: 50px;
+        padding: 0px;
+        margin: 0px;
         background-color: #2b3138;
         color: white;
     }
     #header {
-        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
         width: 100%;
         height: 10%;
     }
@@ -32,6 +34,7 @@
         background: none;
         border: none;
         cursor: pointer;
+        margin-left: 100px;
     }
     #icon > div {
         background-image: url(./github-mark-white.png);
@@ -48,7 +51,8 @@
         margin-left: 10px;
     }
     #menu > ul {
-        display: flex;
+        display: grid;
+        grid-auto-flow: column;
         list-style-type: none;
         padding: 0;
         margin-right: 150px;
@@ -59,11 +63,13 @@
         padding: 10px;
     }
     #nav {
-        margin-left: 150px;
         padding-top: 10px;
+        margin-right: 100px;
+        margin-left: 100px;
     }
     #search {
         margin-right: 10px;
+        padding-left: 10px;
         width: 200px;
         height: 35px;
         background: #464c51; opacity: 0.5;
@@ -84,7 +90,84 @@
         color: inherit;
         border-radius: 5px;
     }
-</style>
+    #main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        gap: 80px;
+        padding: 10px;
+        width: 100%;
+        height: 550px;
+    }
+    #main-left {
+        margin: 20px 0 60px 200px;
+        width: 500px;
+    }
+    #main-left > h1 {
+        font-size: 4em;
+        line-height: 70px;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+    #main-left > p {
+        font-size: 1.3em;
+        line-height: 30px;
+        color: darkgray;
+    }
+    #main-left > p > span {
+        color: white;
+        text-decoration: underline darkgrey;
+
+    }
+    #main-right {
+        width: 400px;
+        height: 500px;
+        background-color: white;
+        color: black;
+        padding: 24px;
+        border-radius: 5px;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    #username, #password, #email {
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        border: 1px solid darkgray;
+        padding-left: 10px;
+        margin-top: 5px;
+    }
+    #main-right small {
+        color: #464c51;
+        font-size: 0.7em;
+        line-height: 5px;
+    }
+    #main-right small > span {
+        color: dodgerblue;
+    }
+    #main-right button {
+        width: 100%;
+        height: 70px;
+        border-radius: 8px;
+        border: none;
+        background-color: #03c75a;
+        color: white;
+        font-weight: bold;
+    }
+    #footer {
+        height: 150px;
+        background-color: white;
+    }
+    #footer > div {
+        text-align: right;
+    }
+    #footer > div > img {
+        width: 600px;
+        padding-right: 100px;
+        margin-bottom: -5px;
+    }
+    </style>
 <header id="header">
     <button id="icon">
         <div></div>
@@ -100,13 +183,46 @@
         </ul>
     </div>
     <nav id="nav">
-            <input id="search" type="text" placeholder="Search GitHub"></input>
+            <input id="search" type="text" placeholder="Search GitHub">
             <button id="sign-in" type="button">Sign in</button>
             <button id="sign-up" type="button">Sign up</button>
     </nav>
 </header>
 <main id="main">
-    <section
+    <section id="main-left">
+        <h1>Built for<br>developers</h1>
+        <p>GitHub is a development platform inspired by the<br>
+            way you work. From <span>open source</span> to <span>business</span>, you<br>
+            can host and review code, manage projects, and<br>
+            build software alongside 50 million developers.</p>
+    </section>
+    <section id="main-right">
+        <div>
+            <div class="bold">Username</div>
+            <input id="username" type="text">
+        </div><br>
+        <div>
+            <div class="bold">Email</div>
+            <input id="email" type="email">
+        </div><br>
+        <div>
+            <div class="bold">Password</div>
+            <input id="password" type="password">
+        </div><br>
+        <small>Make sure it's at least 15 characters OR at least 8 characters including a<br>
+            number and a lowercase letter.<span>Learn more</span>.</small>
+        <br><br>
+        <div>
+            <button>Sign up for GitHub</button>
+        </div><br>
+        <small>By clicking “Sign up for GitHub”, you agree to our <span>Terms of Service</span> and<br>
+            <span>Privacy Statement</span>. We'll occasionally send you account related emails.</small>
+    </section>
 </main>
+<footer id="footer">
+    <div>
+        <img src="./footer.png" alt="footer photo"">
+    </div>
+</footer>
 </body>
 </html>
