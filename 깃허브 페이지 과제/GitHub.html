@@ -2,8 +2,111 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="GitHub icon" type="image" href="./github-mark-white.png">
 <title>GitHub . Build and ship software on a single, collaborative platform</title>
 </head>
 <body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    html, body {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 5px;
+        margin-left: 50px;
+        background-color: #2b3138;
+        color: white;
+    }
+    #header {
+        display: flex;
+        width: 100%;
+        height: 10%;
+    }
+    #icon {
+        z-index: 0;
+        padding: 10px;
+        display: inline-block;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    #icon > div {
+        background-image: url(./github-mark-white.png);
+        position: relative;
+        fill: currentColor;
+        width: 26px;
+        height: 26px;
+        z-index: 1;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #menu {
+        display: inline-block;
+        margin-left: 10px;
+    }
+    #menu > ul {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin-right: 150px;
+    }
+    #menu a {
+        text-decoration: none;
+        color: inherit;
+        padding: 10px;
+    }
+    #nav {
+        margin-left: 150px;
+        padding-top: 10px;
+    }
+    #search {
+        margin-right: 10px;
+        width: 200px;
+        height: 35px;
+        background: #464c51; opacity: 0.5;
+        border-radius: 7px;
+        border: none;
+    }
+    #sign-in {
+        margin-right: 10px;
+        background: none;
+        border: none;
+        color: inherit;
+    }
+    #sign-up {
+        height: 30px;
+        background: none;
+        border-color: white;
+        border-width: 1px;
+        color: inherit;
+        border-radius: 5px;
+    }
+</style>
+<header id="header">
+    <button id="icon">
+        <div></div>
+    </button>
+    <div id="menu">
+        <ul>
+            <li><a href="#">Why GitHub?</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Enterprise</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Marketplace</a></li>
+            <li><a href="#">Pricing</a></li>
+        </ul>
+    </div>
+    <nav id="nav">
+            <input id="search" type="text" placeholder="Search GitHub"></input>
+            <button id="sign-in" type="button">Sign in</button>
+            <button id="sign-up" type="button">Sign up</button>
+    </nav>
+</header>
+<main id="main">
+    <section
+</main>
 </body>
 </html>
