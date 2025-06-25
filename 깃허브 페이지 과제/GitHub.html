@@ -62,6 +62,16 @@
         color: inherit;
         padding: 10px;
     }
+    #menu > ul >li:first-of-type::after, #menu > ul >li:nth-of-type(4)::after, #menu > ul > li:nth-of-type(6)::after {
+        content: '';
+        background-image: url(./arrow-down-wide-line.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: -3px;
+    }
     #nav {
         padding-top: 10px;
         margin-right: 100px;
@@ -121,7 +131,7 @@
     }
     #main-right {
         width: 400px;
-        height: 500px;
+        height: 490px;
         background-color: white;
         color: black;
         padding: 24px;
