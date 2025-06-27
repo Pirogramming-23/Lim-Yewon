@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 html, body {
     width: min(1200px, 100%);
@@ -85,9 +87,6 @@ html, body {
 #second-span {
     font-size: 1.5rem;
 }
-#second-span::after {
-    content: "\ea6e";
-}
 .portfolio {
     display: flex;
     position: relative;
@@ -102,6 +101,17 @@ html, body {
 }
 .portfolio:hover {
     transform: translateY(-2px);
+    .picture > img {
+        transform: scale(1.1);
+    }
+    .hamburger > div:first-of-type {
+        transform-origin: left;
+        transform: scaleX(0.5);
+    }
+    .hamburger > div:last-of-type {
+        transform-origin: right;
+        transform: scaleX(0.5);
+    }
 }
 .picture {
     display: flex;
@@ -162,4 +172,109 @@ html, body {
     height: 2px;
     background-color: rgba(236, 236, 236, 0.466);
     transition: 0.5s;
+}
+footer {
+    width: 100%;
+}
+#footer-top {
+    display: grid;
+    gap: 1rem;
+    padding: 40px;
+    background-color: #333333;
+    width: 100%;
+    font-size: 1.4rem;
+}
+#footer-top > div {
+    grid-template-columns: repeat(3, 30px);
+    column-gap: 1rem;
+    width: min(1200px, 100%);
+    padding: 0 40px;
+    margin: auto;
+}
+#rule {
+    text-decoration: none;
+    color: inherit;
+}
+#rule > div > li {
+    list-style-type: none;
+}
+#footer-top > div {
+    display: flex;
+}
+#grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 100px 0 0;
+    margin: 0;
+}
+#grid > a {
+    padding: 5px 0px;
+}
+footer {
+    width: 100%;
+}
+#footer-top {
+    justify-content: space-between;
+}
+#footer-icon {
+    width: 30px;
+    height: 30px;
+}
+.icons {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    position: relative;
+}
+#footer-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.no-style {
+    list-style-type: none;
+}
+.icons > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+}
+.no-style > a {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+#footer-list {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+#footer-list > li {
+    padding:  0 20px;
+}
+#footer-list > li:not(:last-child) {
+    border-right: 1px solid #606060;
+}
+#footer-bottom {
+    opacity: 0.8;
+    padding: 16px;
+    background-color: #333333;
+    font-size: 1.2rem;
+    text-align: center;
+}
+#footer-bottom > div {
+    padding: 0 40px;
+}
+.footer-hover {
+    transition: transform 0.1s;
+}
+.footer-hover:hover {
+    transform: translateY(-2px);
 }
