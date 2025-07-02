@@ -1,0 +1,29 @@
+{
+    "items": [
+        {"type": "thisrt",
+        "gender": "femaile",
+        "size": "large", "color":
+        "pink", "image": "../img/pink_t.png"
+    },
+    {"type": "thisrt",
+        "gender": "femaile",
+        "size": "large", "color":
+        "pink", "image": "../img/pink_t.png"
+    },
+    {"type": "thisrt",
+        "gender": "femaile",
+        "size": "large", "color":
+        "pink", "image": "../img/pink_t.png"
+    },
+    {"type": "thisrt",
+        "gender": "femaile",
+        "size": "large", "color":
+        "pink", "image": "../img/pink_t.png"
+    },
+    {"type": "thisrt",
+        "gender": "femaile",
+        "size": "large", "color":
+        "pink", "image": "../img/pink_t.png"
+    }
+    ]
+}
