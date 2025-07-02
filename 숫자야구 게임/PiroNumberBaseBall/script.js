@@ -26,6 +26,14 @@ function init() {
     randNum = randomNum();
     console.log(randNum);
     inputNum = [];
+
+    a.value = "";
+    b.value = "";
+    c.value = "";
+
+    document.getElementById("results").innerHTML = "";
+    document.getElementById("game-result-img").src = "";
+    document.querySelector("button").disabled = false;
 }
 
 function check_numbers() {
@@ -67,15 +75,44 @@ function check_numbers() {
     console.log(strike);
     console.log(ball);
 
+    let result = document.createElement("div");
+    if(strike == 0 && ball == 0) {
+        result.innerHTML = `
+        <span>${inputNum.join(" ")}</span>
+        <span>:</span>
+        <span>O</span>
+        `;
+    } else {
+        result.innerHTML = `
+        <span>${inputNum.join(" ")}</span>
+        <span>:</span>
+        <span>${strike}S ${ball}B</span>
+        `;
+    }
 
+    let results = document.getElementById("results");
+    result.style.display = "flex";
+    result.style.alignItems = "center";
+    result.style.justifyContent = "space-around";
+    results.appendChild(result);
 
     if(strike === 3) {
         document.getElementById("game-result-img").src = "success.png";
         document.querySelector("button").disabled = true;
+        setTimeout(() => {
+            let ret = confirm("게임을 다시 시작하겠습니까?");
+            if(ret == true) init();
+            else alert("게임이 종료되었습니다.")
+        }, 3000);
     }
     else if(attempts.innerHTML == 0) {
         document.getElementById("game-result-img").src = "fail.png";
         document.querySelector("button").disabled = true;
+        setTimeout(() => {
+            let ret = confirm("게임을 다시 시작하겠습니까?");
+            if(ret == true) init();
+            else alert("게임이 종료되었습니다.")
+        }, 3000);
     }
 }
 
