@@ -24,7 +24,6 @@ function randomNum() {
 function init() {
     attempts.innerHTML = 9;
     randNum = randomNum();
-    console.log(randNum);
     inputNum = [];
 
     a.value = "";
@@ -41,7 +40,6 @@ function check_numbers() {
         a.value = "";
         b.value = "";
         c.value = "";
-        console.log("no!!")
     }
 
     let inputNum = [
@@ -54,9 +52,6 @@ function check_numbers() {
     let ball = 0;
 
     for(let i=0 ; i<3 ; i++) {
-        console.log(inputNum);
-        console.log(inputNum[i]);
-        console.log(randNum[i]);
 
         if(inputNum[i] == randNum[i]) {
             strike++;
@@ -71,9 +66,6 @@ function check_numbers() {
     }
 
     attempts.innerHTML -= 1;
-
-    console.log(strike);
-    console.log(ball);
 
     let result = document.createElement("div");
     if(strike == 0 && ball == 0) {
