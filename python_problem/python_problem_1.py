@@ -24,3 +24,5 @@ while True :
 
     if brNum >= 31 :
         break
+
+print(f"{players[turn%2]} win!")
