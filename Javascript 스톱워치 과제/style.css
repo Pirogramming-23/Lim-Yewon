@@ -1,0 +1,11 @@
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#title-img {
+    width: 25px;
+    height: 25px;
+}
