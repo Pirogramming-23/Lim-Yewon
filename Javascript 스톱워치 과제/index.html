@@ -10,24 +10,29 @@
 <body>
     <h2 id="title"><img id="title-img" src="./stopwatch-fill.svg" alt="stopwatch">피로그래밍 스톱워치</h2>
     <section id="stopwatch">
+        <div>
         <div id="stopwatch-top">
             <div id="stopwatch-time">00 : 00</div>
         </div>
         <div id="stopwatch-bottom">
-            <button class="stopwatch-function">start</button>
-            <button class="stopwatch-function">stop</button>
-            <button class="stopwatch-function">reset</button>
+            <button id="start" class="stopwatch-function">start</button>
+            <button id="stop" class="stopwatch-function">stop</button>
+            <button id="reset" class="stopwatch-function">reset</button>
+        </div>
         </div>
     </section>
     <section id="record">
+        <div>
         <div id="record-header">
-            <div class="record-item"><img class="record-item-img" src="./circle.svg" alt="circle"></div>
+            <input type="checkbox" id="all-checkbox">
             <div class="record-item"><h3>구간 기록</h3></div>
-            <div class="record-item"><img class="record-item-img" src="./trash3-fill.svg" alt="trash-bin"></div>
+            <div class="record-item"><img id="trash-bin" class="record-item-img" src="./trash3-fill.svg" alt="trash-bin"></div>
         </div>
         <div id="record-body">
-            <div></div>
+            
+        </div>
         </div>
     </section>
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -19,9 +19,16 @@
 }
 
 #stopwatch {
+    margin: 0 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#stopwatch > div {
     text-align: center;
     background-color: #ffdcdc;
-    margin: 0 350px 100px;
+    width: 400px;
     border-radius: 20px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -33,7 +40,7 @@
     border-radius: 20px;
 }
 
-#stopwatch-time {
+#stopwatch-time, #stopwatch-time > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,8 +69,14 @@
 }
 
 #record {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#record > div {
     background-color: #ffffff;
-    margin: 0 300px;
+    width: 600px;
 }
 
 #record-header {
@@ -72,6 +85,11 @@
     justify-content: space-around;
     background-color: #ffdcdc;
     border-radius: 30px 30px 0 0;
+}
+
+#all-checkbox, .checkbox {
+    width: 25px;
+    height: 25px;
 }
 
 .record-item > h3 {
@@ -83,4 +101,15 @@
 .record-item-img {
     width: 25px;
     height: 25px;
+}
+
+.record-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.record-body-time {
+    font-size: 1.4rem;
 }
