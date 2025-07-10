@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Movie reviews</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        .container {
+            padding: 30px;
+            margin: 0 auto;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .review-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 15px;
+        }
+        .review {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .review:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            .review-poster {
+            transform: scale(1.1);
+            }
+        }
+        .review-poster {
+            text-align: center;
+            transition: 0.3s;
+        }
+        .label {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">my<span>Movie</span>reviews</h1>
+        <hr>
+
+        <div class="review-container">
+        {% for review in reviews %}
+            <a href="/reviews/{{ review.id }}" style="text-decoration: none;">
+                <div class="review">
+                    <div class="review-poster">
+                        <img src="{{ review.poster.url }}" alt="poster">
+                    </div>
+
+                    <div class="label">제목</div>
+                    <div class="title">{{ review.title }}</div>
+        
+                    <div class="label">개봉 년도</div>
+                    <div class="content">{{ review.year }}</div>
+
+                    <div class="label">장르</div>
+                    <div class="content">{{ review.genre }}</div>
+
+                    <div class="label">별점</div>
+                    <div class="content">{{ review.rating }}</div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
