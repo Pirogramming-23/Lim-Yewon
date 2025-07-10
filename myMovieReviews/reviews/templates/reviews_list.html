@@ -71,6 +71,8 @@
         <h1 class="page-title">my<span>Movie</span>reviews</h1>
         <hr>
 
+        <a href="/reviews/create/" style="text-decoration: none;">리뷰 작성</a>
+
         <div class="review-container">
         {% for review in reviews %}
             <a href="/reviews/{{ review.id }}" style="text-decoration: none;">
