@@ -3,31 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>My Movie reviews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Titan+One&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            padding: 40px;
+            font-family: "Titan One", sans-serif;
+            background-color: #1B3C53;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .review-write {
+            font-family: "Jua", sans-serif;
+            color: #333;
+            padding: 8px;
+            background-color: #F9F3EF;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .review-write:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+        #header-hr {
+            border-color: #888;
+            border-width: 0.5px;
         }
         .container {
             padding: 30px;
             margin: 0 auto;
         }
         .page-title {
-            font-size: 32px;
+            font-size: 45px;
             font-weight: bold;
-            color: #222;
+            color: #D2C1B6;
             margin-bottom: 30px;
             text-align: center;
         }
+        .page-title > span {
+            font-size: 60px;
+            color: #D9A299;
+        }
         .review-container {
+            font-family: "Nanum Gothic Coding", sans-serif;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
             padding: 15px;
         }
         .review {
-            background-color: #fff;
+            background-color: #F9F3EF;
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 20px;
@@ -37,23 +68,22 @@
         .review:hover {
             transform: translateY(-4px);
             box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-            .review-poster {
-            transform: scale(1.1);
-            }
         }
         .review-poster {
             text-align: center;
-            transition: 0.3s;
+        }
+        .review-poster > img {
+            padding-bottom: 15px;
         }
         .label {
             font-size: 14px;
             color: #888;
-            margin-bottom: 5px;
+            margin-top: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 15px;
             color: #333;
@@ -67,12 +97,16 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1 class="page-title">my<span>Movie</span>reviews</h1>
-        <hr>
-
-        <a href="/reviews/create/" style="text-decoration: none;">리뷰 작성</a>
-
+        <a class="review-write" href="/reviews/create/" style="text-decoration: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg> 리뷰 작성
+        </a>
+    </div>
+    <hr id="header-hr">
+    <div class="container">
         <div class="review-container">
         {% for review in reviews %}
             <a href="/reviews/{{ review.id }}" style="text-decoration: none;">
@@ -81,11 +115,10 @@
                         <img src="{{ review.poster.url }}" alt="poster">
                     </div>
 
-                    <div class="label">제목</div>
                     <div class="title">{{ review.title }}</div>
         
                     <div class="label">개봉 년도</div>
-                    <div class="content">{{ review.year }}</div>
+                    <div class="content">{{ review.year }}년</div>
 
                     <div class="label">장르</div>
                     <div class="content">{{ review.genre }}</div>
