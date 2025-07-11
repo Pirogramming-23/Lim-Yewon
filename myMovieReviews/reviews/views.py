@@ -11,8 +11,20 @@ def reviews_list(request) :
 
 def reviews_read(request, pk) :
     review = Review.objects.get(id=pk)
+    running_time = review.running_time or 0
+    hours = running_time // 60
+    minutes = running_time % 60
+
+    if hours and minutes:
+        printed_time = f"{hours}시간 {minutes}분"
+    elif hours:
+        printed_time = f"{hours}시간"
+    else:
+        printed_time = f"{minutes}분"
+
     context = {
-        "review" : review
+        "review" : review,
+        "printed_time": printed_time
     }
     return render(request, "reviews_read.html", context)
 
