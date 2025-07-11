@@ -5,44 +5,42 @@
     <title>My Movie reviews</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Titan+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: "Titan One", sans-serif;
-            background-color: #1B3C53;
+            font-family: "Playfair Display", sans-serif;
+            background-color: #798777;
             padding: 20px;
         }
         .header {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 20px;
         }
         .review-write {
-            font-family: "Jua", sans-serif;
-            color: #333;
-            padding: 8px;
-            background-color: #F9F3EF;
-            border-radius: 5px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    font-family: "Jua", sans-serif;
+                    color: #333;
+                    padding: 8px;
+                    background-color: #F9F3EF;
+                    border-radius: 5px;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .review-write:hover {
             transform: translateY(-4px);
             box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
-        #header-hr {
-            border-color: #888;
-            border-width: 0.5px;
-        }
         .container {
+            background-color: #A2B29F;
             padding: 30px;
             margin: 0 auto;
+            border-radius: 30px;
         }
         .page-title {
             font-size: 45px;
             font-weight: bold;
-            color: #D2C1B6;
+            color: #333;
             margin-bottom: 30px;
             text-align: center;
         }
@@ -58,7 +56,7 @@
             padding: 15px;
         }
         .review {
-            background-color: #F9F3EF;
+            background-color: #F8EDE3;
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 20px;
@@ -74,6 +72,8 @@
         }
         .review-poster > img {
             padding-bottom: 15px;
+            width: 176px;
+            height: 252px;
         }
         .label {
             font-size: 14px;
@@ -105,7 +105,6 @@
             </svg> 리뷰 작성
         </a>
     </div>
-    <hr id="header-hr">
     <div class="container">
         <div class="review-container">
         {% for review in reviews %}

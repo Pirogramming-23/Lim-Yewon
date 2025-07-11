@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from .models import Review
 
 # Create your views here.
@@ -17,6 +17,8 @@ def reviews_read(request, pk) :
     return render(request, "reviews_read.html", context)
 
 def reviews_create(request) :
+    genre_choices = Review._meta.get_field('genre').choices
+
     if request.method == "POST" :
         Review.objects.create(
             poster = request.FILES["poster"],
@@ -30,7 +32,9 @@ def reviews_create(request) :
             content = request.POST["content"],
         )
         return redirect("/reviews/")
-    return render(request, "reviews_create.html")
+    return render(request, "reviews_create.html", {
+        "genre_choices": genre_choices
+    })
 
 def reviews_delete(request, pk) :
     if request.method == "POST" :
@@ -40,6 +44,7 @@ def reviews_delete(request, pk) :
 
 def reviews_update(request, pk) :
     review = Review.objects.get(id=pk)
+    genre_choices = Review._meta.get_field('genre').choices
 
     if request.method == "POST" :
         if "poster" in request.FILES:
@@ -54,5 +59,5 @@ def reviews_update(request, pk) :
         review.content = request.POST["content"]
         review.save()
         return redirect(f"/reviews/{pk}")
-    context = {"review" : review}
+    context = {"review" : review, "genre_choices": genre_choices}
     return render(request, "reviews_update.html", context)

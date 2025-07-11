@@ -1,18 +1,126 @@
-<h1> 영화 등록하기 </h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Movie reviews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Playfair Display', sans-serif;
+            background-color: #798777;
+            padding: 20px;
+        }
+        .back-link {
+            text-decoration: none;
+            text-align: center;
+        }
+        .back-link > h1 {
+            font-size: 45px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        .back-link > h1 > span {
+            font-size: 60px;
+            color: #D9A299;
+        }
+        .container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #A2B29F;
+            padding: 30px;
+            margin: 0 auto;
+            border-radius: 30px;
+        }
+        .container > h1 {
+            margin: 0 0 20px;
+        }
+        .container > div {
+            display: grid;
+            grid-template-columns: auto;
+            padding: 0 50px;
+        }
+        .form-div {
+            padding: 10px 50px;
+        }
+        .form-div > form {
+            padding: 0 50px;
+            text-align: left;
+        }
+        .new-review {
+            padding: 10px;
+        }
+        .new-review input, .new-review textarea {
+            background-color: #F8EDE3;
+            width: 100%;
+            height: 2rem;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            border-width: 1px;
+            border-color: color-mix(in srgb, #444444, transparent 80%);
+        }
+        .new-review textarea {
+            height: 5rem;
+            resize: vertical;
+            overflow: auto;
+        }
+        .new-review input:focus, .new-review textarea:focus {
+            outline: none;
+            border: 1px solid #BE8F87;
+        }
+        .submit-button {
+            text-align: center;
+        }
+        .button:last-of-type {
+            width: 50%;
+            height: 2rem;
+            text-align: center;
+            border-radius: 3px;
+            border: none;
+        }
+        .submit-button > input:hover {
+            background-color: color-mix(in srgb, white, black 10%);
+        }
+    </style>
+</head>
+<body>
+<a href="/reviews" class="back-link"><h1>my<span>Movie</span>reviews</h1></a>
 
-<form action="/reviews/create/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="poster"> <br/>
-    <input name="title" placeholder="제목" /> <br/>
-    <input name="year" placeholder="개봉 년도" /> <br/>
-    <input name="director" placeholder="감독" /> <br/>
-    <input name="actors" placeholder="주연" /> <br/>
-    <input name="genre" placeholder="장르" /> <br/>
-    <input name="rating" placeholder="별점" /> <br/>
-    <input name="running_time" placeholder="러닝 타임" /> <br/>
-    <textarea name="content" cols="30" rows="10"></textarea>
-    <br/>
+<div class="container">
+    <h1> Add a new Review </h1>
     <div>
-        <input type="submit" value="작성완료">
+        <div class="form-div">
+            <form action="/reviews/create/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input class="button" type="file" name="poster">
+                <div class="new-review">제목<input name="title" /></div>
+                <div class="new-review">개봉 년도<input name="year" /></div>
+                <div class="new-review">감독<input name="director" /></div>
+                <div class="new-review">주연<input name="actors" /></div>
+                <div class="new-review">장르
+                    <select name="genre">
+                        {% for code, label in genre_choices %}
+                            <option value="{{ code }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="new-review">별점<input name="rating" /></div>
+                <div class="new-review">러닝 타임<input name="running_time" /></div>
+                <div class="new-review"><div>Comment</div><textarea name="content" cols="30" rows="10"></textarea></div>
+                <div class="submit-button">
+                    <input class="button" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
+</body>
+</html>
