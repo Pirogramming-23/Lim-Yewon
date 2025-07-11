@@ -7,35 +7,84 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: "Playfair Display", sans-serif;
             background-color: #798777;
             padding: 20px;
         }
         .header {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 0 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 15px;
+        }
+        .header-right-form {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .header-right-form > input {
+            border-radius: 5px;
+            height: 2rem;
+            padding: 10px 18px;
+            margin-right: 5px;
+        }
+        .header-right-form > input:focus {
+            border: 1px solid #BE8F87;
+        }
+        .header-right-form > input, .header-right-form > button {
+            background-color: #F8EDE3;
+            outline: none;
+            border: none;
+            height: 100%;
+        }
+        .header-right-form > button {
+            height: 2rem;
+            padding: 10px 18px;
+            background-color: #faedcd;
+            border-radius: 5px;
+        }
+        .header-right-form > button:hover {
+            background-color: color-mix(in srgb, #faedcd, black 10%);
         }
         .review-write {
-                    font-family: "Jua", sans-serif;
-                    color: #333;
-                    padding: 8px;
-                    background-color: #F9F3EF;
-                    border-radius: 5px;
-                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            font-family: "Jua", sans-serif;
+            color: #333;
+            padding: 10px 18px;
+            background-color: #BDD2B6;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .review-write:hover {
-            transform: translateY(-4px);
+            background-color: color-mix(in srgb, #BDD2B6, black 10%);
             box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
         .container {
             background-color: #A2B29F;
             padding: 30px;
-            margin: 0 auto;
+            margin: 0 30px 10px;
             border-radius: 30px;
+        }
+        .sort {
+            padding: 0 20px 10px;
+        }
+        .sort-review {
+            color: #46656F;
+            text-decoration: none;
+        }
+        .sort-review:hover {
+            color: #454449;
         }
         .page-title {
             font-size: 45px;
@@ -64,7 +113,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .review:hover {
-            transform: translateY(-4px);
+            background-color: color-mix(in srgb, #F8EDE3, black 10%);
             box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
         .review-poster {
@@ -99,25 +148,35 @@
 <body>
     <div class="header">
         <h1 class="page-title">my<span>Movie</span>reviews</h1>
-        <a class="review-write" href="/reviews/create/" style="text-decoration: none;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-            </svg> 리뷰 작성
-        </a>
-    </div>
-    <div class="sort">
-        <p>현재 정렬: {{ sort }}</p>
-
-        <a href="?sort=title">제목 오름차순</a> | 
-        <a href="?sort=-title">제목 내림차순</a> | 
-        <a href="?sort=rating">별점 낮은 순</a> | 
-        <a href="?sort=-rating">별점 높은 순</a> |
-        <a href="?sort=year">개봉년도 오름차순</a> | 
-        <a href="?sort=-year">개봉년도 내림차순</a> |
-        <a href="?sort=running_time">러닝타임 낮은 순</a> | 
-        <a href="?sort=-running_time">러닝타임 높은 순</a>
+        <div class="header-right">
+            <form class="header-right-form" method="get">
+                <input type="text" name="search" placeholder="영화를 입력하세요" value="{{ search }}">
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </form>
+            <a class="review-write" href="/reviews/create/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg> Add
+            </a>
+        </div>
     </div>
     <div class="container">
+        <div class="sort">
+            <p>현재 정렬 : {{ sort }}</p>
+
+            <a class="sort-review" href="?sort=title">제목 오름차순</a> | 
+            <a class="sort-review" href="?sort=-title">제목 내림차순</a> | 
+            <a class="sort-review" href="?sort=rating">별점 낮은 순</a> | 
+            <a class="sort-review" href="?sort=-rating">별점 높은 순</a> |
+            <a class="sort-review" href="?sort=year">개봉년도 오름차순</a> | 
+            <a class="sort-review" href="?sort=-year">개봉년도 내림차순</a> |
+            <a class="sort-review" href="?sort=running_time">러닝타임 낮은 순</a> | 
+            <a class="sort-review" href="?sort=-running_time">러닝타임 높은 순</a>
+        </div>
         <div class="review-container">
         {% for review in reviews %}
             <a href="/reviews/{{ review.id }}" style="text-decoration: none;">

@@ -6,36 +6,142 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Playfair Display', sans-serif;
+            background-color: #798777;
+            padding: 20px;
+        }
+        .back-link {
+            text-decoration: none;
+            text-align: center;
+        }
+        .back-link > h1 {
+            font-size: 45px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        .back-link > h1 > span {
+            font-size: 60px;
+            color: #D9A299;
+        }
+        .container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #A2B29F;
+            padding: 30px;
+            margin: 0 auto;
+            border-radius: 30px;
+        }
+        .container > h1 {
+            color: #283450;
+            margin: 0 0 20px;
+        }
+        .container > div {
+            display: grid;
+            grid-template-columns: auto;
+            padding: 0 50px;
+        }
+        .form-div {
+            font-family: "Nanum Gothic Coding", sans-serif;
+            padding: 10px 50px;
+        }
+        .form-div > form {
+            padding: 0 50px;
+            text-align: left;
+        }
+        .update-img {
+            text-align: center;
+        }
+        .update-img > input {
+            text-align: center;
+        }
+        .update-review {
+            padding: 10px;
+        }
+        .update-review input, .update-review textarea {
+            background-color: #F8EDE3;
+            width: 100%;
+            height: 2rem;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            border-width: 1px;
+            border-color: color-mix(in srgb, #444444, transparent 80%);
+        }
+        .update-review textarea {
+            height: 5rem;
+            resize: vertical;
+            overflow: auto;
+        }
+        .update-review input:focus, .update-review textarea:focus {
+            outline: none;
+            border: 1px solid #BE8F87;
+        }
+        #genre-choice {
+            background-color: #F8EDE3;
+            outline: none;
+            margin: 10px;
+        }
+         .submit-button {
+            text-align: center;
+        }
+        .submit-button > input {
+            width: 50%;
+            height: 2rem;
+            text-align: center;
+            border-radius: 3px;
+            border: none;
+        }
+        .submit-button > input:hover {
+            background-color: color-mix(in srgb, white, black 10%);
+        }
+    </style>
 </head>
 <body>
-<h1>수정하기</h1>
+    <a href="/reviews" class="back-link"><h1>my<span>Movie</span>reviews</h1></a>
 
-<form action="/reviews/{{review.id}}/update/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if review.poster %}
-        <img src="{{ review.poster.url }}" alt="포스터" style="max-width:200px;"><br>
-    {% endif %}
-    <input type="file" name="poster"><br/>
-    <input name="title" placeholder="제목" value="{{review.title}}"><br>
-    <input name="year" placeholder="제작 년도" value="{{review.year}}"><br>
-    <input name="director" placeholder="감독" value="{{review.director}}"><br>
-    <input name="actors" placeholder="주연" value="{{review.actors}}"><br>
-    <div class="new-review">장르
-        <select name="genre">
-            {% for code, label in genre_choices %}
-                <option value="{{ code }}" {% if review.genre == code %}selected{% endif %}>
-                    {{ label }}
-                </option>
-            {% endfor %}
-        </select>
+    <div class="container">
+        <h1>Modify</h1>
+
+        <div>
+            <div class="form-div">
+                <form action="/reviews/{{review.id}}/update/" method="post" enctype="multipart/form-data">
+                    <div class="update-img">
+                    {% csrf_token %}
+                    {% if review.poster %}
+                        <img src="{{ review.poster.url }}" alt="포스터"><br>
+                    {% endif %}
+                        <input type="file" name="poster">
+                    </div>
+                    <div class="update-review">제목<input name="title" value="{{review.title}}"></div>
+                    <div class="update-review">제작 년도<input name="year" value="{{review.year}}"></div>
+                    <div class="update-review">감독<input name="director" value="{{review.director}}"></div>
+                    <div class="update-review">주연<input name="actors" value="{{review.actors}}"></div>
+                    <div class="update-review">장르<br>
+                        <select id="genre-choice" class="update-review" name="genre">
+                            {% for code, label in genre_choices %}
+                                <option value="{{ code }}" {% if review.genre == code %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="update-review">별점<input name="rating" value="{{review.rating}}"></div>
+                    <div class="update-review">러닝 타임<input name="running_time" value="{{review.running_time}}"></div>
+                    <div class="update-review">Comment<textarea name="content" cols="30" rows="10">{{review.content}}</textarea></div>
+                    <div class="submit-button">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <input name="rating" placeholder="별점" value="{{review.rating}}"><br>
-    <input name="running_time" placeholder="러닝 타임" value="{{review.running_time}}"><br>
-    <textarea name="content" placeholder="내용" cols="30" rows="10">{{review.content}}</textarea><br>
-    <div>
-        <input type="submit" value="수정 완료">
-    </div>
-</form>
 </body>
 </html>

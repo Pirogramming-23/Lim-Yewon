@@ -40,7 +40,11 @@
             border-radius: 30px;
         }
         .container > h1 {
+            color: #283450;
             margin: 0 0 20px;
+        }
+        .container > h1 > span {
+            color: #547792;
         }
         .container > div {
             display: grid;
@@ -76,6 +80,11 @@
             outline: none;
             border: 1px solid #BE8F87;
         }
+        #select-genre {
+            background-color: #F8EDE3;
+            outline: none;
+            margin: 10px;
+        }
         .submit-button {
             text-align: center;
         }
@@ -95,7 +104,7 @@
 <a href="/reviews" class="back-link"><h1>my<span>Movie</span>reviews</h1></a>
 
 <div class="container">
-    <h1> Add a new Review </h1>
+    <h1> Add a <span>new Review</span> </h1>
     <div>
         <div class="form-div">
             <form action="/reviews/create/" method="post" enctype="multipart/form-data">
@@ -105,8 +114,8 @@
                 <div class="new-review">개봉 년도<input name="year" /></div>
                 <div class="new-review">감독<input name="director" /></div>
                 <div class="new-review">주연<input name="actors" /></div>
-                <div class="new-review">장르
-                    <select name="genre">
+                <div class="new-review">장르<br>
+                    <select id="select-genre" class="new-review" name="genre">
                         {% for code, label in genre_choices %}
                             <option value="{{ code }}">{{ label }}</option>
                         {% endfor %}

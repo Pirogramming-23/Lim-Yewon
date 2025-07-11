@@ -3,7 +3,7 @@ from .models import Review
 
 # Create your views here.
 def reviews_list(request) :
-    sort = request.GET.get('sort', 'title')  # 기본 정렬은 'title'
+    sort = request.GET.get('sort', 'title')
     
     sort_list = {
         "title" : "제목 오름차순",
@@ -19,11 +19,21 @@ def reviews_list(request) :
     if sort not in sort_list:
         sort = 'title' 
 
-    reviews = Review.objects.all().order_by(sort)
+    search = request.GET.get('search')
+    reviews = Review.objects.all()
+
+    if search:
+        from django.db.models import Q
+        reviews = reviews.filter(
+            Q(title__icontains=search) | Q(director__icontains=search)
+        )
+
+    reviews = reviews.order_by(sort)
     sort_text = sort_list[sort]
     context = {
         "reviews" : reviews,
         "sort" : sort_text,
+        "search" : search,
     }
     return render(request, "reviews_list.html", context)
 
