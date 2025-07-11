@@ -105,6 +105,18 @@
             </svg> 리뷰 작성
         </a>
     </div>
+    <div class="sort">
+        <p>현재 정렬: {{ sort }}</p>
+
+        <a href="?sort=title">제목 오름차순</a> | 
+        <a href="?sort=-title">제목 내림차순</a> | 
+        <a href="?sort=rating">별점 낮은 순</a> | 
+        <a href="?sort=-rating">별점 높은 순</a> |
+        <a href="?sort=year">개봉년도 오름차순</a> | 
+        <a href="?sort=-year">개봉년도 내림차순</a> |
+        <a href="?sort=running_time">러닝타임 낮은 순</a> | 
+        <a href="?sort=-running_time">러닝타임 높은 순</a>
+    </div>
     <div class="container">
         <div class="review-container">
         {% for review in reviews %}

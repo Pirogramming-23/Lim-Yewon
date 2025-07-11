@@ -3,9 +3,27 @@ from .models import Review
 
 # Create your views here.
 def reviews_list(request) :
-    reviews = Review.objects.all()
+    sort = request.GET.get('sort', 'title')  # 기본 정렬은 'title'
+    
+    sort_list = {
+        "title" : "제목 오름차순",
+        "-title" : "제목 내림차순",
+        "rating" : "별점 낮은 순",
+        "-rating" : "별점 높은 순",
+        "year" : "개봉년도 오름차순",
+        "-year" : "개봉년도 내림차순",
+        "running_time" : "러닝타임 낮은 순",
+        "-running_time" : "러닝타임 높은 순"
+    }
+
+    if sort not in sort_list:
+        sort = 'title' 
+
+    reviews = Review.objects.all().order_by(sort)
+    sort_text = sort_list[sort]
     context = {
-        "reviews" : reviews
+        "reviews" : reviews,
+        "sort" : sort_text,
     }
     return render(request, "reviews_list.html", context)
 
