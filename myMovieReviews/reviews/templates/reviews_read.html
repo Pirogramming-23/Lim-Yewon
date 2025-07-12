@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>My Movie reviews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Playfair Display', sans-serif;
+            background-color: #798777;
+            padding: 20px;
+        }
+        .back-link {
+            text-align: center;
+            text-decoration: none;
+        }
+        .back-link > h1 {
+            font-size: 45px;
+            font-weight: bold;
+            color: #333;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        .back-link > h1 > span {
+            font-size: 60px;
+            color: #D9A299;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #A2B29F;
+            padding: 30px;
+            margin: 0 auto;
+            border-radius: 30px;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #283450;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .review {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            align-items: center;
+            gap: 40px;
+            background-color: #F8EDE3;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .review-poster > img {
+            width: 176px;
+            height: 252px;
+        }
+        .label {
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+        .user {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+        }
+        .content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            white-space: pre-wrap;
+        }
+        .bottom-links {
+            margin: 10px;
+            display: flex;
+            justify-content: right;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .edit-link, .delete-link {
+            color: #908F8A;
+            background-color: #F0F0F0;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+        .edit-link:hover, .delete-link:hover {
+            color: #454449;
+        }
+        #comment {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="/reviews" class="back-link"><h1>my<span>Movie</span>reviews</h1></a>
+    <div class="container">
+        <div class="page-title">{{ review.title }}</div>
+
+        <div class="bottom-links">
+            <a href="/reviews/{{ review.id }}/update/" class="edit-link">수정</a>
+            {% csrf_token %}
+            <form method="POST" action="/reviews/{{ review.id }}/delete/" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="delete-link" style="border: none; cursor: pointer;">삭제</button>
+            </form>
+        </div>
+
+        <div class="review">
+            <div class="review-poster">
+                <img src="{{ review.poster.url }}" alt="poster">
+            </div>
+
+            <div>
+                <div class="label">감독</div>
+                <div class="user">{{ review.director }}</div>
+
+                <div class="label">주연</div>
+                <div class="user">{{ review.actors }}</div>
+
+                <div class="label">장르</div>
+                <div class="user">{{ review.genre }}</div>
+
+                <div class="label">별점</div>
+                <div class="user">{{ review.rating }}</div>
+
+                <div class="label">러닝타임</div>
+                <div class="user">{{ printed_time }}</div>
+            </div>
+        </div>
+
+        <div class="review">
+            <div id="comment" class="label">Comment</div>
+            <div class="content">{{ review.content }}</div>
+        </div>
+    </div>
+</body>
+</html>
