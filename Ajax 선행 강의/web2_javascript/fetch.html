@@ -13,10 +13,11 @@
             })
             */
            //Asynchronous
-           function callbackme() {
-                console.log('response end');
-           }
-           fetch('html').then(callbackme); // 첫 번째 인자로 전달된 데이터를 서버에게 요청하는 함수. fetch api는 응답이 끝나면 callbackme 함수 실행
+           fetch('javascript').then(function(response) {
+            if(response.status == '404') {
+                alert('Not found')
+            }
+           }); // fetch : 첫 번째 인자로 전달된 데이터를 서버에게 요청하는 함수. fetch api는 응답이 끝나면 함수 실행
            console.log(1);
            console.log(2);
         ">
