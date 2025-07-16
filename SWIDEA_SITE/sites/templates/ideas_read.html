@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/ideas_read.css' %}">
+</head>
+<body>
+    <a href="/ideas/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+    <div class="container">
+        <div class="container-header">
+            <div class="page-title">Idea detail</div>
+        </div>
+
+        <div class="idea">
+            <div class="idea-image">
+                {% if idea.photo %}
+                <img src="{{ idea.photo.url }}" alt="image">
+                {% else %}
+                <img src="{% static 'img/no-image.jpg' %}" alt="defultImage">
+                {% endif %}
+            </div>
+
+            <div>
+                <div class="label">{{ ideas.title }}</div>
+
+                <div class="label">1. 아이디어 관심도</div>
+                <div class="text">{{ ideas.interest }}</div>
+
+                <div class="label">2. 핵심 개발툴</div>
+                <div class="text">{{ ideas.devtool }}</div>
+
+                <div class="label">3. 아이디어 설명</div>
+                <div class="text">{{ ideas.content }}</div>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="/ideas/{{ ideas.id }}/update/" class="edit-link">수정</a>
+            {% csrf_token %}
+             <a href="/ideas/" class="list-link">목록</a>
+            {% csrf_token %}
+            <form method="POST" action="/ideas/{{ ideas.id }}/delete/" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="delete-link">삭제</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

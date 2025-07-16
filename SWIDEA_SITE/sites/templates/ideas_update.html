@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/ideas_update.css' %}">
+</head>
+<body>
+    <a href="/ideas/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+
+    <div class="container">
+        <h1>Idea detail update</h1>
+
+        <div>
+            <div class="form-div">
+                <form action="/ideas/{{idea.id}}/update/" method="post" enctype="multipart/form-data">
+                    <div class="update-img">
+                    {% csrf_token %}
+                    {% if idea.poster %}
+                        <img src="{{ idea.poster.url }}" alt="포스터"><br>
+                    {% endif %}
+                        <input type="file" name="poster">
+                    </div>
+                    <div class="update-idea">아이디어 이름<input name="title" value="{{idea.title}}"></div>
+                    <div class="update-idea">관심도<input name="interest" value="{{idea.interest}}"></div>
+                    <div class="update-idea">예상 개발툴<br>
+                        <select id="devtool" class="update-idea" name="devtool">
+                            {% for code, label in devtools %}
+                                <option value="{{ code }}" {% if idea.devtool == code %}selected{% endif %}>
+                                    {{ label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="update-idea">Comment<textarea name="content" cols="30" rows="10">{{idea.content}}</textarea></div>
+                    <div class="submit-button">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

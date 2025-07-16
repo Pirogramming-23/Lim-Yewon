@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="page-title">My <span>SW Idea</span> Manage</h1>
+        <div class="header-right">
+            <a class="review-write" href="/ideas/create/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg> Add
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sort">
+            <p>현재 정렬 : {{ sort }}</p>
+
+            <a class="sort-review" href="?sort=title">제목 오름차순</a> | 
+            <a class="sort-review" href="?sort=-title">제목 내림차순</a> | 
+            <a class="sort-review" href="?sort=created_at">최신순</a> | 
+            <a class="sort-review" href="?sort=-created_at">등록순</a>
+        </div>
+        <div class="idea-container">
+        {% for idea in ideas %}
+            <a href="/ideas/{{ idea.id }}" style="text-decoration: none;">
+                <div class="idea">
+                    <div class="idea-image">
+                        {% if idea.photo %}
+                        <img src="{{ idea.photo.url }}" alt="image">
+                        {% else %}
+                        <img src="{% static 'img/no-image.jpg' %}" alt="defaultImage">
+                        {% endif %}
+                    </div>
+
+                    <div class="title">{{ idea.title }}</div><hr>
+        
+                    <div class="content">{{ idea.content }}</div>
+
+                    <div class="content">아이디어 관심도 : {{ idea.interest }}</div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
