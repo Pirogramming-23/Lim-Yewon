@@ -21,6 +21,10 @@ body {
     padding: 0 30px;
 }
 
+.menu-bar {
+    text-decoration: none;
+}
+
 .container {
     background-color: #ced4da;
     padding: 25px;

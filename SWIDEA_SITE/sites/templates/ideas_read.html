@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{% static 'css/ideas_read.css' %}">
 </head>
 <body>
-    <a href="/ideas/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+    <a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
     <div class="container">
         <div class="container-header">
             <div class="page-title">Idea detail</div>
@@ -40,11 +40,11 @@
         </div>
 
         <div class="links">
-            <a href="/ideas/{{ ideas.id }}/update/" class="edit-link">수정</a>
+            <a href="/{{ ideas.id }}/update/" class="edit-link">수정</a>
             {% csrf_token %}
-             <a href="/ideas/" class="list-link">목록</a>
+             <a href="/" class="list-link">목록</a>
             {% csrf_token %}
-            <form method="POST" action="/ideas/{{ ideas.id }}/delete/" style="display: inline;">
+            <form method="POST" action="/{{ ideas.id }}/delete/" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="delete-link">삭제</button>
             </form>

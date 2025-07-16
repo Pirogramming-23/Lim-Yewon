@@ -44,7 +44,7 @@ def ideas_create(request) :
             devtool = request.POST["devtool"],
             content = request.POST["content"],
         )
-        return redirect("/ideas/")
+        return redirect("/")
     return render(request, "ideas_create.html", {
         "devtools": devtools
     })
@@ -53,7 +53,7 @@ def ideas_delete(request, pk) :
     if request.method == "POST" :
         idea = Idea.objects.get(id=pk)
         idea.delete()
-    return redirect("/ideas/")
+    return redirect("/")
 
 def ideas_update(request, pk) :
     idea = Idea.objects.get(id=pk)
@@ -68,13 +68,6 @@ def ideas_update(request, pk) :
         idea.devtool = request.POST["devtool"]
         idea.content = request.POST["content"]
         idea.save()
-        return redirect(f"/ideas/{pk}")
+        return redirect(f"/{pk}")
     context = {"idea" : idea, "devtools": devtools}
     return render(request, "ideas_update.html", context)
-
-def devtools_list(request) :
-    devtools = Idea._meta.get_field('devtool').choices
-    context = {
-        "devtools" : devtools
-    }
-    return render(request, "devtools_list.html", context)

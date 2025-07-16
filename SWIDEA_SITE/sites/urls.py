@@ -6,5 +6,4 @@ urlpatterns = [
         path('create/', ideas_create),
         path('<int:pk>/delete/', ideas_delete),
         path('<int:pk>/update/', ideas_update),
-        path('devtools/', devtools_list),
 ]

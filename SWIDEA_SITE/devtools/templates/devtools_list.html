@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/devtools_list.css' %}">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+        <div class="header-right">
+            <a class="add-devtool" href="/devtools/create/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg> Add
+            </a>
+        </div>
+    </div>
+
+     <div class="container">
+        <h1>DevTool List</h1>
+        <div class="idea-container">
+        {% for devtool in devtools %}
+            <a href="/devtools/{{ devtool.id }}" style="text-decoration: none;">
+                <div class="devtool">
+                    <div class="name">{{ devtool.name }}</div>
+        
+                    <div class="kind">{{ devtool.kind }}</div>
+
+                    <div class="content">{{ devtool.content }}</div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+     </div>
+</body>
