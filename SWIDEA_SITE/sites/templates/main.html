@@ -17,19 +17,19 @@
         <a class="menu-bar" href="devtools/create">개발툴 등록</a>
         <a class="menu-bar" href="devtools/">개발툴 관리</a>
     </div>
-    
+
     <div class="container">
         <div class="sort">
             <p>현재 정렬 : {{ sort }}</p>
 
             <a class="sort-review" href="?sort=title">제목 오름차순</a> | 
             <a class="sort-review" href="?sort=-title">제목 내림차순</a> | 
-            <a class="sort-review" href="?sort=created_at">최신순</a> | 
-            <a class="sort-review" href="?sort=-created_at">등록순</a>
+            <a class="sort-review" href="?sort=created_at">등록순</a> | 
+            <a class="sort-review" href="?sort=-created_at">최신순</a>
         </div>
         <div class="idea-container">
         {% for idea in ideas %}
-            <a href="/ideas/{{ idea.id }}" style="text-decoration: none;">
+            <a href="/{{ idea.id }}" style="text-decoration: none;">
                 <div class="idea">
                     <div class="idea-image">
                         {% if idea.photo %}
@@ -38,6 +38,13 @@
                         <img src="{% static 'img/no-image.jpg' %}" alt="defaultImage">
                         {% endif %}
                     </div>
+                    {% for idea in ideas %}
+                        {% if idea.id in user_stars %}
+                            <a href="{% url 'sites:toggle_star' idea.pk %}">★</a>
+                        {% else %}
+                            <a href="{% url 'sites:toggle_star' idea.pk %}">☆</a>
+                        {% endif %}
+                    {% endfor %}
 
                     <div class="title">{{ idea.title }}</div><hr>
         

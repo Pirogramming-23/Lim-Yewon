@@ -29,9 +29,9 @@
                     <div class="update-idea">관심도<input name="interest" value="{{idea.interest}}"></div>
                     <div class="update-idea">예상 개발툴<br>
                         <select id="devtool" class="update-idea" name="devtool">
-                            {% for code, label in devtools %}
-                                <option value="{{ code }}" {% if idea.devtool == code %}selected{% endif %}>
-                                    {{ label }}
+                            {% for devtool in devtools %}
+                                <option value="{{ devtool.id }}" {% if idea.devtool == code %}selected{% endif %}>
+                                    {{ devtool.name }}
                                 </option>
                             {% endfor %}
                         </select>

@@ -22,10 +22,10 @@
                 <div class="new-idea">아이디어 이름<input name="title" /></div>
                 <div class="new-idea">관심도<input name="interest" /></div>
                 <div class="new-idea">예상 개발툴<br>
-                    <select id="select-devtool" class="new-idea" name="devtool">
-                        {% for code, label in devtools %}
-                            <option value="{{ code }}">{{ label }}</option>
-                        {% endfor %}
+                    <select name="devtool">
+                    {% for tool in devtools %}
+                        <option value="{{ tool.id }}">{{ tool.name }}</option>
+                    {% endfor %}
                     </select>
                 </div>        
                 <div class="new-idea"><div>Content</div><textarea name="content" cols="30" rows="10"></textarea></div>
