@@ -38,13 +38,6 @@
                         <img src="{% static 'img/no-image.jpg' %}" alt="defaultImage">
                         {% endif %}
                     </div>
-                    {% for idea in ideas %}
-                        {% if idea.id in user_stars %}
-                            <a href="{% url 'sites:toggle_star' idea.pk %}">★</a>
-                        {% else %}
-                            <a href="{% url 'sites:toggle_star' idea.pk %}">☆</a>
-                        {% endif %}
-                    {% endfor %}
 
                     <div class="title">{{ idea.title }}</div><hr>
         

@@ -92,17 +92,6 @@ def ideas_update(request, pk):
     }
     return render(request, "ideas_update.html", context)
 
-@login_required
-def toggle_star(request, pk):
-    idea = get_object_or_404(Idea, pk=pk)
-    user = request.user
-
-    star, created = IdeaStar.objects.get_or_create(user=user, item=idea)
-    if not created:
-        # 이미 찜한 상태면 취소
-        star.delete()
-
-    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 @login_required
 @require_POST

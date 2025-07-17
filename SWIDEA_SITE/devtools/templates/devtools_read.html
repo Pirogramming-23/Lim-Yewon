@@ -25,7 +25,17 @@
                 <div class="content">{{ devtools.content }}</div>
 
                 <div class="label">만들 수 있는 SW 목록</div>
-                <div class="text">{{ ideas.content }}</div>
+                {% if ideas %}
+                    <ul>
+                    {% for idea in ideas %}
+                        <li>
+                            <a href="/{{ idea.id }}/">{{ idea.title }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>이 개발툴을 사용하는 아이디어가 없습니다.</p>
+                {% endif %}
             </div>
         </div>
 

@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import DevTool
+from sites.models import Idea
 
 # Create your views here.
 def devtools_list(request) :
@@ -48,3 +49,13 @@ def devtools_update(request, pk) :
         return redirect(f"/devtools/{pk}")
     context = {"devtool" : devtools}
     return render(request, "devtools_update.html", context)
+
+def devtool_detail(request, pk):
+    devtool = get_object_or_404(DevTool, pk=pk)
+    ideas = Idea.objects.filter(devtool=devtool)
+
+    context = {
+        'devtool': devtool,
+        'ideas': ideas
+    }
+    return render(request, 'devtools/devtools_read.html', context)

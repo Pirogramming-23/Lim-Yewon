@@ -11,6 +11,7 @@
 </head>
 <body>
     <a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+    
     <div class="container">
         <div class="container-header">
             <div class="page-title">Idea detail</div>
@@ -32,7 +33,7 @@
                 <div class="text">{{ ideas.interest }}</div>
 
                 <div class="label">2. 핵심 개발툴</div>
-                <div class="text">{{ ideas.devtool }}</div>
+                <a href="/devtools/{{ ideas.devtool.id }}" class="text">{{ ideas.devtool }}</a>
 
                 <div class="label">3. 아이디어 설명</div>
                 <div class="text">{{ ideas.content }}</div>
@@ -43,7 +44,6 @@
             <a href="/{{ ideas.id }}/update/" class="edit-link">수정</a>
             {% csrf_token %}
              <a href="/" class="list-link">목록</a>
-            {% csrf_token %}
             <form method="POST" action="/{{ ideas.id }}/delete/" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="delete-link">삭제</button>
