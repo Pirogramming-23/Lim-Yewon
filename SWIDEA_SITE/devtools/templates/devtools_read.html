@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/devtools_read.css' %}">
+</head>
+<body>
+    <a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+    <div class="container">
+        <div class="container-header">
+            <h1 class="page-title">DevTool detail</h1>
+        </div>
+
+        <div class="idea">
+            <div>
+                <div class="name">{{ devtools.name }}</div>
+
+                <div class="kind">{{ devtools.kind }}</div>
+
+                <div class="content">{{ devtools.content }}</div>
+
+                <div class="label">만들 수 있는 SW 목록</div>
+                {% if ideas %}
+                    <ul>
+                    {% for idea in ideas %}
+                        <li>
+                            <a href="/{{ idea.id }}/">{{ idea.title }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>이 개발툴을 사용하는 아이디어가 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="/devtools/{{ devtools.id }}/update/" class="edit-link">수정</a>
+            {% csrf_token %}
+             <a href="/devtools/" class="list-link">목록</a>
+            {% csrf_token %}
+            <form method="POST" action="/devtools/{{ devtools.id }}/delete/" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="delete-link">삭제</button>
+            </form>
+        </div>
+    </div>
+</body>

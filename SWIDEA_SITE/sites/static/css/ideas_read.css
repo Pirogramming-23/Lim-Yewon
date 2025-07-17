@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.back-link {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.back-link > h1 {
+    padding: 0 30px;
+}
+
+.back-link span {
+    color: #ffbe0b;
+}
+
+.container {
+    background-color: #ced4da;
+    padding: 25px;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+.container-header {
+    text-align: center;
+    font-size: 3rem;
+    padding: 20px;
+    color: #1b4965;
+}
+
+.idea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    border: 1px solid #495057;
+    gap: 100px;
+    padding: 10px 30px;
+}
+
+.idea-image > img {
+    width: 200px;
+    height: 200px;
+}
+
+.label:first-of-type {
+    font-size: 1.5rem;
+    padding: 20px 0;
+}
+
+.text {
+    padding: 0 0 20px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.edit-link, .list-link, .delete-link {
+    text-decoration: none;
+    color: #132a13;
+    background-color: #F0F0F0;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+.delete-link {
+    font-size: 16px;
+    border: none;
+}
+
+.edit-link:hover, .list-link:hover, .delete-link:hover {
+    color: #454449;
+    background-color: color-mix(in srgb, #F0f0f0, black 5%);
+}

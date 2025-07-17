@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/ideas_create.css' %}">
+</head>
+<body>
+<a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+
+<div class="container">
+    <h1>Idea Register</h1>
+    <div>
+        <div class="form-div">
+            <form action="/create/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input class="button" type="file" name="photo">
+                <div class="new-idea">아이디어 이름<input name="title" /></div>
+                <div class="new-idea">관심도<input name="interest" /></div>
+                <div class="new-idea">예상 개발툴<br>
+                    <select name="devtool">
+                    {% for tool in devtools %}
+                        <option value="{{ tool.id }}">{{ tool.name }}</option>
+                    {% endfor %}
+                    </select>
+                </div>        
+                <div class="new-idea"><div>Content</div><textarea name="content" cols="30" rows="10"></textarea></div>
+
+                <div class="submit-button">
+                    <input class="button" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

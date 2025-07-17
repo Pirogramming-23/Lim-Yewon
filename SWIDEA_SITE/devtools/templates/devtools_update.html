@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/devtools_update.css' %}">
+</head>
+<body>
+    <a href="/" class="back-link"><h1>My <span>SW Idea</span> Manage</h1></a>
+
+    <div class="container">
+        <h1>DevTool detail update</h1>
+
+        <div>
+            <div class="form-div">
+                <form action="/devtools/{{devtool.id}}/update/" method="post">
+                    {% csrf_token %}
+                    <div class="update-devtool">이름<input name="name" value="{{devtool.name}}"></div>
+                    <div class="update-devtool">종류<input name="kind" value="{{devtool.kind}}"></div>
+                    <div class="update-devtool">Content<textarea name="content" cols="30" rows="10">{{devtool.content}}</textarea></div>
+                    <div class="submit-button">
+                        <input type="submit" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

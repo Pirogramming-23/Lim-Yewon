@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>My SW Idea Manage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="page-title">My <span>SW Idea</span> Manage</h1>
+        <a class="menu-bar" href="/create/">아이디어 등록</a>
+        <a class="menu-bar" href="#">아이디어 관리</a>
+        <a class="menu-bar" href="devtools/create">개발툴 등록</a>
+        <a class="menu-bar" href="devtools/">개발툴 관리</a>
+    </div>
+
+    <div class="container">
+        <div class="sort">
+            <p>현재 정렬 : {{ sort }}</p>
+
+            <a class="sort-review" href="?sort=title">제목 오름차순</a> | 
+            <a class="sort-review" href="?sort=-title">제목 내림차순</a> | 
+            <a class="sort-review" href="?sort=created_at">등록순</a> | 
+            <a class="sort-review" href="?sort=-created_at">최신순</a>
+        </div>
+        <div class="idea-container">
+        {% for idea in ideas %}
+            <a href="/{{ idea.id }}" style="text-decoration: none;">
+                <div class="idea">
+                    <div class="idea-image">
+                        {% if idea.photo %}
+                        <img src="{{ idea.photo.url }}" alt="image">
+                        {% else %}
+                        <img src="{% static 'img/no-image.jpg' %}" alt="defaultImage">
+                        {% endif %}
+                    </div>
+
+                    <div class="title">{{ idea.title }}</div><hr>
+        
+                    <div class="content">{{ idea.content }}</div>
+
+                    <div class="content">아이디어 관심도 : {{ idea.interest }}</div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
