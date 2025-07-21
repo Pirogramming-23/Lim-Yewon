@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+MX:wght@100..400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block extra_css %}{% endblock %}
+        <script src="https://kit.fontawesome.com/7d6a50a6b2.js" crossorigin="anonymous"></script>
+        <title>pirostagram</title>
+    </head>
+    <body>
+        <header>
+            <div class="header__container">
+                <div class="header__icon"><i class="fas fa-cog"></i></div>
+                <div class="header__username">pirogramming</div>
+                <div class="header__icon"><i class="fas fa-user-plus"></i></div>
+            </div>
+        </header>
+        <main>
+            {% block content %} {% endblock %}
+        </main>
+        <footer>
+            <div class="footer__container">
+                <div class="footer__item"><i class="fas fa-home"></i></div>
+                <div class="footer__item"><i class="fas fa-search"></i></div>
+                <div class="footer__item"><i class="far fa-plus-square"></i></div>
+                <div class="footer__item"><i class="far fa-heart"></i></div>
+                <div class="footer__image"><img src="{% static 'img/chiikawa.jpeg' %}" alt="" /></div>
+            </div>
+        </footer>
+    </body>
+</html>
